@@ -1,0 +1,23 @@
+.main-menu{
+    padding:10px 15px;
+    margin:0;
+    list-style:none;
+    border:1px solid #E5E5E5;
+    background:#f5f5f5;
+    position: absolute;
+}
+.main-menu li{
+    display:inline;
+    margin-right:5px;
+    text-align: center;
+    width: 120px;
+}
+.main-menu a{
+    color: #cc7f24;
+}
+body{
+    font-family:Arial, sans-serif;
+    font-size:14px;
+    line-height:1.4;
+    padding:10px;
+}

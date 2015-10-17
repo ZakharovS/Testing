@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="spd - spd@localhost" uuid="bd177a58-13b0-43d9-bc1f-559793692a85">
+    <database-info product="MySQL" version="5.6.20" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.34 ( Revision: jess.balint@oracle.com-20141014163213-wqbwpf1ok2kvo1om )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <schema name="" catalog="spd"/>
+    <table name="answers" schema="" catalog="spd" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="answer" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="correct" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="question_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_answers_questions" columns="question_id" ref-table="questions" ref-schema="" ref-catalog="spd" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_answers_questions" unique="false" columns="question_id"/>
+    </table>
+    <table name="authorization" schema="" catalog="spd" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="userrole" sqlType="VARCHAR" precision="11" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_user_authorization_authorization" table="user_authorization" schema="" catalog="spd" columns="role_id"/>
+    </table>
+    <table name="currtest" schema="" catalog="spd" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="answer_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="question_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="test_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="user_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <index name="Answers" unique="false" columns="answer_id"/>
+      <index name="Questions" unique="false" columns="question_id"/>
+      <index name="Test" unique="false" columns="test_id"/>
+      <index name="User" unique="false" columns="user_id"/>
+    </table>
+    <table name="forum" schema="" catalog="spd" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="post" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="username" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="time" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" version="true"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="joke" schema="" catalog="spd" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="questions" schema="" catalog="spd" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="question" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="test_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_questions_test" columns="test_id" ref-table="test" ref-schema="" ref-catalog="spd" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_answers_questions" table="answers" schema="" catalog="spd" columns="question_id"/>
+      <index name="FK_questions_test" unique="false" columns="test_id"/>
+    </table>
+    <table name="resulttest" schema="" catalog="spd" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="user_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="test_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="result" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="time" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" version="true"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="test" schema="" catalog="spd" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_questions_test" table="questions" schema="" catalog="spd" columns="test_id"/>
+    </table>
+    <table name="user" schema="" catalog="spd" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="username" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="password" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="nickname" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="email" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="enabled" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_user_authorization_user" table="user_authorization" schema="" catalog="spd" columns="user_id"/>
+    </table>
+    <table name="user_authorization" schema="" catalog="spd" type="TABLE">
+      <column name="user_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="role_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="user_id,role_id"/>
+      <foreign-key name="FK_user_authorization_authorization" columns="role_id" ref-table="authorization" ref-schema="" ref-catalog="spd" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_user_authorization_user" columns="user_id" ref-table="user" ref-schema="" ref-catalog="spd" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_user_authorization_authorization" unique="false" columns="role_id"/>
+    </table>
+  </data-source>
+</component>
